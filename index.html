@@ -1,0 +1,80 @@
+
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Islamic Digital Library</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;1,700&family=Cinzel:wght@500;700&family=Prompt:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <!-- CSS & PageFlip Library -->
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/page-flip/dist/js/page-flip.browser.js"></script>
+</head>
+<body>
+
+  <!-- 1. Splash Screen -->
+  <div id="splash-screen">
+    <div class="calligraphy">إليك... يا من يعشق عبق الحكايات</div>
+    <p id="ui-splash-sub" style="color: #ccc; font-size: 1.1rem;"></p>
+    <button class="enter-btn" id="ui-enter-btn" onclick="enterLibrary()"></button>
+  </div>
+
+  <!-- Header -->
+  <nav>
+    <h2 style="color: var(--gold); font-family: 'Cinzel', serif; letter-spacing: 2px;">NOOR & PAGES</h2>
+  </nav>
+
+  <!-- 2. Shelf View (ชั้นหนังสือ 3D) -->
+  <div id="shelf-view">
+    <h1 id="ui-shelf-title" style="color: var(--gold-light); font-weight: 400; margin-bottom: 10px;"></h1>
+    <div class="book-grid" id="bookshelf-container"></div>
+  </div>
+
+  <!-- 3. Reader View (ห้องอ่านหนังสือแบบเต็มจอ) -->
+  <div id="reader-view">
+    <div class="reader-controls">
+      <button id="ui-back-btn" onclick="backToShelf()"></button>
+      <button id="ui-prev-btn" onclick="flipPrev()"></button>
+      <button id="ui-next-btn" onclick="flipNext()"></button>
+
+      <!-- ปุ่มเปิด-ปิดเสียง -->
+      <button id="audio-toggle-btn" onclick="toggleAudioMute()"></button>
+
+      <!-- กล่องค้นหาหน้า -->
+      <div class="search-page-box">
+        <input type="number" id="page-input" min="1" placeholder="1" />
+        <span id="page-total">/ 1</span>
+        <button id="ui-go-btn" onclick="goToInputPage()"></button>
+      </div>
+
+      <!-- ปุ่มคั่นหน้า (Bookmark) -->
+      <button id="bookmark-btn" onclick="toggleBookmark()"></button>
+      <button id="resume-btn" onclick="resumeBookmark()" style="display: none;"></button>
+    </div>
+
+    <!-- พื้นที่แสดงตัวเล่มหนังสือ -->
+    <div id="book-container"></div>
+  </div>
+
+  <!-- เครื่องเล่นเสียงเพลงพื้นหลัง (จำเป็นสำหรับระบบเสียงใน app.js) -->
+  <audio id="bg-music" loop></audio>
+
+  <!-- โหลดไฟล์ข้อมูลหนังสือแยกแต่ละเล่ม -->
+  <script src="book1.js"></script>
+  <script src="book2.js"></script>
+  <script src="book3.js"></script>
+  <script src="book4.js"></script>
+
+  <!-- รวมหนังสือทั้งหมดเข้าด้วยกัน -->
+  <script src="books-th.js"></script>
+
+  <!-- สคริปต์ควบคุมการทำงานหลัก -->
+  <script src="app.js"></script>
+</body>
+</html>
+

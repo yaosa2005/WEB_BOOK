@@ -1,0 +1,500 @@
+:root {
+  --bg-deep-wine: #16070a;
+  --wine-mid: #2e0f15;
+  --wine-glow: #4a1d26;
+  --gold-antique: #d4af37;
+  --gold-champagne: #fae8c8;
+  --gold-dim: rgba(212, 175, 55, 0.35);
+  --paper-cream: #f4efe6;
+  --text-ink: #2b1f1d;
+  --leather-spine: #16080b;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Prompt', sans-serif;
+  background: radial-gradient(circle at 50% 30%, var(--wine-mid) 0%, var(--bg-deep-wine) 100%);
+  color: #fff;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* 1. Splash Screen */
+#splash-screen {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at center, #faf6ed 0%, #ecdcc9 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  transition: opacity 0.8s ease, visibility 0.8s;
+  text-align: center;
+  padding: 24px;
+}
+
+.calligraphy {
+  font-family: 'Amiri', serif;
+  font-size: clamp(2.4rem, 7vw, 4rem);
+  color: #7d1f2d;
+  text-shadow: 0 4px 18px rgba(212, 175, 55, 0.45);
+  margin-bottom: 14px;
+  line-height: 1.35;
+}
+
+#ui-splash-sub {
+  color: #5c433c !important;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+}
+
+.enter-btn {
+  margin-top: 30px;
+  padding: 12px 42px;
+  font-size: clamp(0.92rem, 2.5vw, 1.05rem);
+  background: linear-gradient(135deg, #2b1016, #421620);
+  color: var(--gold-champagne);
+  border: 1.5px solid var(--gold-antique);
+  border-radius: 40px;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(43, 16, 22, 0.35);
+  transition: all 0.35s ease;
+  letter-spacing: 0.5px;
+}
+
+.enter-btn:hover {
+  background: linear-gradient(135deg, #7d1f2d, #9e2a3b);
+  color: #fff;
+  box-shadow: 0 0 28px rgba(212, 175, 55, 0.7);
+  transform: translateY(-2px);
+}
+
+/* Navbar */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px clamp(15px, 4vw, 45px);
+  border-bottom: 1px solid var(--gold-dim);
+  background: rgba(22, 7, 10, 0.92);
+  backdrop-filter: blur(12px);
+}
+
+/* 2. Shelf View */
+#shelf-view {
+  padding: clamp(35px, 6vw, 65px) 15px;
+  max-width: 1050px;
+  margin: auto;
+  text-align: center;
+}
+
+.book-grid {
+  display: flex;
+  justify-content: center;
+  gap: clamp(35px, 6vw, 75px);
+  flex-wrap: wrap;
+  margin-top: clamp(25px, 4vw, 50px);
+}
+
+.book-3d-wrapper {
+  position: relative;
+  width: clamp(195px, 45vw, 245px);
+  height: clamp(280px, 65vw, 350px);
+  margin: 15px 0;
+  cursor: pointer;
+  perspective: 1000px;
+}
+
+.book-3d {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transform: rotateY(-18deg) rotateX(8deg);
+  transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.3, 1), filter 0.5s ease;
+  filter: drop-shadow(0 12px 22px rgba(0, 0, 0, 0.65));
+}
+
+.book-3d-wrapper:hover .book-3d {
+  transform: rotateY(0deg) rotateX(0deg) translateY(-10px);
+  filter: drop-shadow(0 20px 32px rgba(0, 0, 0, 0.8));
+}
+
+.book-cover {
+  position: absolute;
+  inset: 0;
+  border-radius: 4px 10px 10px 4px;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: clamp(16px, 3vw, 25px);
+  box-shadow: 14px 20px 35px rgba(0, 0, 0, 0.9);
+  border-left: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.cover-emboss-frame {
+  position: absolute;
+  inset: 12px;
+  border: 1.5px solid rgba(212, 175, 55, 0.7);
+  border-radius: 2px;
+  pointer-events: none;
+  box-shadow: inset 0 0 12px rgba(0, 0, 0, 0.6);
+}
+
+.cover-emboss-frame::after {
+  content: '';
+  position: absolute;
+  inset: 3px;
+  border: 1px dashed rgba(212, 175, 55, 0.45);
+}
+
+.book-3d::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 2px;
+  width: 24px;
+  height: 98%;
+  background: linear-gradient(90deg, #120406 0%, #3d141b 45%, #120406 100%);
+  transform: translateX(-17px) rotateY(-90deg);
+  transform-origin: left center;
+  border-radius: 3px 0 0 3px;
+}
+
+.book-3d::after {
+  content: '';
+  position: absolute;
+  right: 4px;
+  top: 4px;
+  width: 18px;
+  height: 96%;
+  background: repeating-linear-gradient(0deg, #f7f1e1, #f7f1e1 2px, #dfd2b8 3px, #dfd2b8 4px);
+  transform: translateX(8px) rotateY(90deg);
+  transform-origin: right center;
+}
+
+.cover-title {
+  font-size: clamp(0.95rem, 2.8vw, 1.25rem);
+  color: var(--gold-champagne);
+  background: rgba(22, 7, 10, 0.85);
+  padding: 10px 14px;
+  border-left: 3px solid var(--gold-antique);
+  border-radius: 2px;
+  z-index: 2;
+  text-align: left;
+  backdrop-filter: blur(6px);
+  line-height: 1.35;
+}
+
+/* 3. Reader View */
+#reader-view {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  background: radial-gradient(ellipse at 50% 28%, var(--wine-glow) 0%, var(--bg-deep-wine) 90%);
+  overflow: hidden;
+  opacity: 0;
+}
+
+#reader-view.reader-enter {
+  animation: readerFadeIn 0.7s cubic-bezier(0.22, 0.8, 0.32, 1) forwards;
+}
+
+@keyframes readerFadeIn {
+  from { opacity: 0; transform: scale(0.96); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.reader-controls {
+  position: absolute;
+  top: 12px;
+  left: 0;
+  right: 0;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  z-index: 60;
+  padding: 0 10px;
+  flex-wrap: wrap;
+}
+
+.reader-controls button {
+  background: rgba(30, 9, 13, 0.9);
+  border: 1px solid var(--gold-antique);
+  color: var(--gold-champagne);
+  padding: 6px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.7);
+  transition: all 0.25s ease;
+  font-size: clamp(0.78rem, 2vw, 0.88rem);
+  backdrop-filter: blur(8px);
+}
+
+.reader-controls button:hover {
+  background: var(--gold-antique);
+  color: #1a080c;
+  transform: translateY(-1px);
+}
+
+.search-page-box {
+  display: flex;
+  align-items: center;
+  background: rgba(30, 9, 13, 0.9);
+  border: 1px solid var(--gold-antique);
+  border-radius: 20px;
+  padding: 2px 6px 2px 10px;
+  gap: 6px;
+  backdrop-filter: blur(8px);
+}
+
+.search-page-box input {
+  width: 45px;
+  background: transparent;
+  border: none;
+  color: var(--gold-champagne);
+  text-align: center;
+  font-family: inherit;
+  font-size: 0.85rem;
+  outline: none;
+}
+
+.search-page-box span {
+  font-size: 0.8rem;
+  color: #baa29a;
+}
+
+.search-page-box button {
+  padding: 3px 10px;
+  font-size: 0.78rem;
+}
+
+#bookmark-btn.saved {
+  background: var(--gold-antique);
+  color: #1a080c;
+  font-weight: 600;
+}
+
+/* พื้นที่จัดวางกึ่งกลาง ป้องกันหน้ากระดาษเอียงหรือหลุดกรอบ */
+#book-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  padding-top: 50px;
+  position: relative;
+  overflow: hidden;
+}
+
+.desk-stage {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.desk-stage::after {
+  content: '';
+  position: absolute;
+  bottom: -15px;
+  left: 4%;
+  width: 92%;
+  height: 38px;
+  background: rgba(0, 0, 0, 0.85);
+  border-radius: 50%;
+  filter: blur(20px);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.flip-book {
+  position: relative;
+  z-index: 2;
+  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.8);
+}
+
+/* หน้ากระดาษหลัก: ล็อกพื้นที่ให้อยู่ในกรอบ 100% ไม่ให้ข้อความทะลุหลุดออกไป */
+.page {
+  padding: 22px 20px 42px 20px;
+  background-color: #f4efe6;
+  background-image: url('pic/paper-texture.jpg');
+  background-repeat: repeat;
+  background-size: 320px auto;
+  color: var(--text-ink);
+  border: none;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  box-sizing: border-box;
+  overflow: hidden !important; /* ป้องกันข้อความทะลุออกข้างล่าง */
+}
+
+/* กล่องเลื่อนเฉพาะเนื้อหาด้านใน: ควบคุมให้อยู่แต่ในกรอบทอง */
+.page-content {
+  width: 100%;
+  height: 100%;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  padding: 8px 10px 14px 10px;
+  box-sizing: border-box;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  z-index: 3;
+}
+
+.page-content::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+.page-content p:last-child {
+  margin-bottom: 20px;
+}
+
+/* ลบแถบเงาร่องสันตรงกลางออก ให้สีและลายกระดาษเรียบเนียนสม่ำเสมอทั้งหน้า */
+.page:nth-child(odd),
+.page:nth-child(even) {
+  background-image: url('pic/paper-texture.jpg');
+}
+
+/* กรอบลายเส้นทองวินเทจ */
+.page::before {
+  content: '';
+  position: absolute;
+  inset: 12px;
+  border: 1px solid rgba(184, 142, 60, 0.35);
+  outline: 1px dashed rgba(184, 142, 60, 0.2);
+  outline-offset: -5px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ลวดลายฉลุ 4 มุม */
+.page::after {
+  content: '❖';
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  right: 14px;
+  bottom: 14px;
+  font-size: 10px;
+  color: #b88e3c;
+  pointer-events: none;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* หัวข้อหนังสือ */
+.page h3 {
+  color: #63141f;
+  margin-bottom: 18px;
+  text-align: center;
+  font-family: 'Amiri', 'Prompt', serif;
+  font-size: clamp(1.22rem, 2.5vw, 1.48rem);
+  line-height: 1.4;
+  position: relative;
+  z-index: 2;
+  flex-shrink: 0;
+}
+
+.page h3::before,
+.page h3::after {
+  content: '❧';
+  font-size: 0.9rem;
+  color: #b88e3c;
+  margin: 0 8px;
+  vertical-align: middle;
+  opacity: 0.85;
+}
+
+.page h3::after {
+  display: inline-block;
+  transform: scaleX(-1);
+}
+
+/* ข้อความเนื้อหา */
+.page p {
+  font-size: clamp(0.95rem, 1.9vw, 1.05rem);
+  line-height: 1.9;
+  text-align: left;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  margin-bottom: 14px;
+  letter-spacing: 0.15px;
+  color: #2b1f1d;
+  position: relative;
+}
+
+.page strong {
+  color: #5c141d;
+  font-weight: 600;
+}
+
+/* กล่องอ้างอิงอัลกุรอาน / ฮะดีษ */
+.page div[style*="background"] {
+  background: rgba(212, 175, 55, 0.09) !important;
+  border-left: 3px solid #b88e3c !important;
+  border-radius: 3px !important;
+  padding: 12px 16px !important;
+  margin: 16px 0 !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  position: relative;
+  flex-shrink: 0;
+}
+
+/* สไตล์รูปภาพ */
+.page-img {
+  width: 100%;
+  max-height: 220px;
+  object-fit: cover;
+  border-radius: 4px;
+  margin: 12px 0 16px 0;
+  border: 1px solid rgba(212, 175, 55, 0.45);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+  display: block;
+}
+
+/* ล็อกเลขหน้าให้อยู่ด้านล่างสุด แยกขาดจากพื้นที่เลื่อนเนื้อหา */
+.page-number {
+  position: absolute;
+  bottom: 12px;
+  left: 0;
+  right: 0;
+  height: 24px;
+  line-height: 24px;
+  text-align: center;
+  font-size: 0.85rem;
+  color: #8c7263;
+  font-weight: 500;
+  font-family: 'Cinzel', 'Prompt', serif;
+  letter-spacing: 2px;
+  z-index: 10;
+  pointer-events: none;
+  background: transparent;
+}
+
+@media (max-width: 600px) {
+  nav h2 { font-size: 1.1rem; }
+  .book-grid { gap: 28px; }
+  .book-3d { transform: rotateY(-10deg) rotateX(4deg); }
+  .page {
+    background-image: url('pic/paper-texture.jpg') !important;
+    padding: 18px 14px 38px 14px;
+  }
+  .page::before { inset: 8px; }
+  .page::after { top: 10px; left: 10px; right: 10px; bottom: 10px; }
+  .page-number { bottom: 8px; }
+}
