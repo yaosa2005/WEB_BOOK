@@ -20,7 +20,6 @@ body {
   overflow-x: hidden;
 }
 
-/* 1. Splash Screen */
 #splash-screen {
   position: fixed;
   inset: 0;
@@ -71,7 +70,6 @@ body {
   transform: translateY(-2px);
 }
 
-/* Navbar */
 nav {
   display: flex;
   justify-content: space-between;
@@ -82,7 +80,7 @@ nav {
   backdrop-filter: blur(12px);
 }
 
-/* 2. Shelf View */
+
 #shelf-view {
   padding: clamp(35px, 6vw, 65px) 15px;
   max-width: 1050px;
@@ -337,7 +335,7 @@ nav {
   flex-direction: column;
   position: relative;
   box-sizing: border-box;
-  overflow: hidden !important; /* ป้องกันข้อความทะลุออกข้างล่าง */
+  overflow: hidden !important; 
 }
 
 /* กล่องเลื่อนเฉพาะเนื้อหาด้านใน: ควบคุมให้อยู่แต่ในกรอบทอง */
