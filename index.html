@@ -17,47 +17,43 @@
 </head>
 <body>
 
-  <!-- 1. Splash Screen -->
+
   <div id="splash-screen">
     <div class="calligraphy">إليك... يا من يعشق عبق الحكايات</div>
     <p id="ui-splash-sub" style="color: #ccc; font-size: 1.1rem;"></p>
     <button class="enter-btn" id="ui-enter-btn" onclick="enterLibrary()"></button>
   </div>
 
-  <!-- Header -->
+
   <nav>
     <h2 style="color: var(--gold); font-family: 'Cinzel', serif; letter-spacing: 2px;">NOOR & PAGES</h2>
   </nav>
 
-  <!-- 2. Shelf View (ชั้นหนังสือ 3D) -->
   <div id="shelf-view">
     <h1 id="ui-shelf-title" style="color: var(--gold-light); font-weight: 400; margin-bottom: 10px;"></h1>
     <div class="book-grid" id="bookshelf-container"></div>
   </div>
 
-  <!-- 3. Reader View (ห้องอ่านหนังสือแบบเต็มจอ) -->
   <div id="reader-view">
     <div class="reader-controls">
       <button id="ui-back-btn" onclick="backToShelf()"></button>
       <button id="ui-prev-btn" onclick="flipPrev()"></button>
       <button id="ui-next-btn" onclick="flipNext()"></button>
 
-      <!-- ปุ่มเปิด-ปิดเสียง -->
+      
       <button id="audio-toggle-btn" onclick="toggleAudioMute()"></button>
 
-      <!-- กล่องค้นหาหน้า -->
       <div class="search-page-box">
         <input type="number" id="page-input" min="1" placeholder="1" />
         <span id="page-total">/ 1</span>
         <button id="ui-go-btn" onclick="goToInputPage()"></button>
       </div>
 
-      <!-- ปุ่มคั่นหน้า (Bookmark) -->
+      
       <button id="bookmark-btn" onclick="toggleBookmark()"></button>
       <button id="resume-btn" onclick="resumeBookmark()" style="display: none;"></button>
     </div>
 
-    <!-- พื้นที่แสดงตัวเล่มหนังสือ -->
     <div id="book-container"></div>
   </div>
 

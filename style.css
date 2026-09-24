@@ -283,7 +283,6 @@ nav {
   font-weight: 600;
 }
 
-/* พื้นที่จัดวางกึ่งกลาง ป้องกันหน้ากระดาษเอียงหรือหลุดกรอบ */
 #book-container {
   display: flex;
   align-items: center;
@@ -322,7 +321,7 @@ nav {
   box-shadow: 0 16px 45px rgba(0, 0, 0, 0.8);
 }
 
-/* หน้ากระดาษหลัก: ล็อกพื้นที่ให้อยู่ในกรอบ 100% ไม่ให้ข้อความทะลุหลุดออกไป */
+
 .page {
   padding: 22px 20px 42px 20px;
   background-color: #f4efe6;
@@ -338,7 +337,7 @@ nav {
   overflow: hidden !important; 
 }
 
-/* กล่องเลื่อนเฉพาะเนื้อหาด้านใน: ควบคุมให้อยู่แต่ในกรอบทอง */
+
 .page-content {
   width: 100%;
   height: 100%;
@@ -361,13 +360,12 @@ nav {
   margin-bottom: 20px;
 }
 
-/* ลบแถบเงาร่องสันตรงกลางออก ให้สีและลายกระดาษเรียบเนียนสม่ำเสมอทั้งหน้า */
 .page:nth-child(odd),
 .page:nth-child(even) {
   background-image: url('pic/paper-texture.jpg');
 }
 
-/* กรอบลายเส้นทองวินเทจ */
+
 .page::before {
   content: '';
   position: absolute;
@@ -379,7 +377,7 @@ nav {
   z-index: 1;
 }
 
-/* ลวดลายฉลุ 4 มุม */
+
 .page::after {
   content: '❖';
   position: absolute;
@@ -395,7 +393,6 @@ nav {
   justify-content: space-between;
 }
 
-/* หัวข้อหนังสือ */
 .page h3 {
   color: #63141f;
   margin-bottom: 18px;
@@ -423,7 +420,6 @@ nav {
   transform: scaleX(-1);
 }
 
-/* ข้อความเนื้อหา */
 .page p {
   font-size: clamp(0.95rem, 1.9vw, 1.05rem);
   line-height: 1.9;
@@ -441,7 +437,7 @@ nav {
   font-weight: 600;
 }
 
-/* กล่องอ้างอิงอัลกุรอาน / ฮะดีษ */
+
 .page div[style*="background"] {
   background: rgba(212, 175, 55, 0.09) !important;
   border-left: 3px solid #b88e3c !important;
@@ -453,7 +449,6 @@ nav {
   flex-shrink: 0;
 }
 
-/* สไตล์รูปภาพ */
 .page-img {
   width: 100%;
   max-height: 220px;
@@ -465,7 +460,6 @@ nav {
   display: block;
 }
 
-/* ล็อกเลขหน้าให้อยู่ด้านล่างสุด แยกขาดจากพื้นที่เลื่อนเนื้อหา */
 .page-number {
   position: absolute;
   bottom: 12px;

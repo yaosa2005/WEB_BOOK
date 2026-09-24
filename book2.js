@@ -5,7 +5,7 @@ const BOOK_2 = {
   bgMusic: "sound/The Way of Tears Relaxing.mp3",
   title: "ใต้ฟ้านี้... <p>ไม่มีคำว่าบังเอิญ</p>",
   pages: [
-    // --- คำนำ ---
+    
     {
       audio: null,
       content: `

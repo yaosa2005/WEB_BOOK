@@ -231,7 +231,6 @@ function renderBook(index) {
   document.getElementById('page-total').innerText = `/ ${currentBook.pages.length}`;
   document.getElementById('page-input').max = currentBook.pages.length;
 
-  // ครอบด้วย page-content ป้องกันข้อความล้นทะลุกรอบ และแยกชั้นจาก page-number อย่างเด็ดขาด
   currentBook.pages.forEach((p, pageIdx) => {
     const pageEl = document.createElement('div');
     pageEl.className = 'page';
@@ -247,7 +246,6 @@ function renderBook(index) {
   deskStage.appendChild(bookDiv);
   container.appendChild(deskStage);
 
-  // คำนวณขนาดสมมาตรเพื่อความตรงบล็อก 100% ไม่เอียงหลุดมุม
   const availW = window.innerWidth;
   const availH = window.innerHeight - 80;
   const isMobile = availW < 768;
