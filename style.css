@@ -4,7 +4,7 @@
   --wine-glow: #4a1d26;
   --gold-antique: #d4af37;
   --gold-champagne: #fae8c8;
-  --gold-dim: rgba(212, 175, 55, 0.35);
+  --gold-dim: rgba(146, 27, 138, 0.35);
   --paper-cream: #f4efe6;
   --text-ink: #2b1f1d;
   --leather-spine: #16080b;
@@ -79,7 +79,6 @@ nav {
   background: rgba(22, 7, 10, 0.92);
   backdrop-filter: blur(12px);
 }
-
 
 #shelf-view {
   padding: clamp(35px, 6vw, 65px) 15px;
@@ -321,7 +320,6 @@ nav {
   box-shadow: 0 16px 45px rgba(0, 0, 0, 0.8);
 }
 
-
 .page {
   padding: 22px 20px 42px 20px;
   background-color: #f4efe6;
@@ -337,24 +335,37 @@ nav {
   overflow: hidden !important; 
 }
 
-
+/* ส่วนที่ถูกแก้ไขให้เลื่อน (Scroll) ได้ */
 .page-content {
   width: 100%;
   height: 100%;
   overflow-y: auto !important;
   overflow-x: hidden !important;
-  padding: 8px 10px 14px 10px;
+  padding: 8px 16px 20px 10px; 
   box-sizing: border-box;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
   z-index: 3;
 }
 
+/* ตกแต่ง Scrollbar ให้เข้ากับธีมหนังสือ */
 .page-content::-webkit-scrollbar {
-  display: none !important;
-  width: 0 !important;
-  height: 0 !important;
+  width: 5px !important;
+  display: block !important; 
 }
+
+.page-content::-webkit-scrollbar-track {
+  background: rgba(212, 175, 55, 0.1); 
+  border-radius: 4px;
+}
+
+.page-content::-webkit-scrollbar-thumb {
+  background: rgba(184, 142, 60, 0.7); 
+  border-radius: 4px;
+}
+
+.page-content::-webkit-scrollbar-thumb:hover {
+  background: rgba(184, 142, 60, 1); 
+}
+/* สิ้นสุดส่วนที่แก้ไข */
 
 .page-content p:last-child {
   margin-bottom: 20px;
@@ -364,7 +375,6 @@ nav {
 .page:nth-child(even) {
   background-image: url('pic/paper-texture.jpg');
 }
-
 
 .page::before {
   content: '';
@@ -376,7 +386,6 @@ nav {
   pointer-events: none;
   z-index: 1;
 }
-
 
 .page::after {
   content: '❖';
@@ -436,7 +445,6 @@ nav {
   color: #5c141d;
   font-weight: 600;
 }
-
 
 .page div[style*="background"] {
   background: rgba(212, 175, 55, 0.09) !important;
